@@ -1,0 +1,29 @@
+{
+    "description": {
+        "en": "This is the configuration of Item Physic mod",
+        "ru": "Это конфигурация мода Item Physic"
+    },
+    "properties": {
+        "enabled": {
+            "name": {
+                "en": "Enable Mod",
+                "ru": "Включить мод"
+            }
+        },
+        "rotateSpeed": {
+            "name": {
+                "en": "Rotation Speed",
+                "ru": "Скорость переворота"
+            },
+            "description": {
+                "en": "Controls the speed at which the dropped item rotates while not being on ground. Higher value - faster rotation, 0 - no rotation",
+                "ru": "Контролирует скорость, с которой выкинутый предмет переворачивается, пока он не на земле. Выше значение - быстрее переворот, 0 - не переворачивается"
+            },
+            "displayIf": "enabled",
+            "type": "SeekBar",
+            "min": 0,
+            "max": 10,
+            "value": 1
+        }
+    }
+}
