@@ -29,6 +29,7 @@ class ItemStackBase {
     int getAuxValue() const;
     bool isBlock() const;
     void* getItem() const;
+    /*InnerCore*/ unsigned short getCount() const;
 };
 
 class ItemStack : public ItemStackBase { public: };
@@ -59,6 +60,7 @@ class MatrixStack {
         void release();
     };
     MatrixStackRef push();
+    void pop();
 };
 
 enum ItemContextFlags: int {};
@@ -67,6 +69,7 @@ class BaseActorRenderContext;
 class ItemInHandRenderer {
     public:
     void renderItem(BaseActorRenderContext&, Actor&, const ItemStack&, bool, ItemContextFlags, bool);
+    bool _canTessellateAsBlockItem(const ItemStack&) const;
 };
 
 class BaseActorRenderContext {
@@ -77,7 +80,15 @@ class BaseActorRenderContext {
     ItemInHandRenderer& getItemInHandRenderer();
 };
 
+class ActorRenderData {
+    public:
+    ItemActor* actor;
+};
+class BlockActorRenderData;
+
 class ItemRenderer;
+class BannerRenderer;
+class ShieldRenderer;
 
 class Core {
     public:

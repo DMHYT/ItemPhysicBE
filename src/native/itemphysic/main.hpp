@@ -22,12 +22,16 @@ class ItemPhysicModule : public Module {
     };
     static float ROTATE_SPEED;
     static long long lastTickTime;
+    static ItemActor* currentRenderedItemActor;
     static inline long long getTimeNanoseconds() {
         using namespace std::chrono;
         return duration_cast<nanoseconds>(system_clock::now().time_since_epoch()).count();
     }
-    static bool is3D(ItemStackBase* stack);
-    static bool render(BaseActorRenderContext* ctx, ItemActor* itemActor, int itemCount, float scaleFactor);
+    static int getModelCount(ItemStackBase* stack);
+    static bool isConduitOrSkull(ItemStackBase* stack);
+    static void neutralizeVanillaRenderTransformations(BaseActorRenderContext* ctx, const MatrixStack::MatrixStackRef& ref, ItemActor* itemActor, float scaleFactor);
+    static void applyRotations(const MatrixStack::MatrixStackRef& ref, ItemActor* itemActor, float scaleFactor, bool isItem3D, bool applyTranslations);
+    static bool render(BaseActorRenderContext* ctx, ItemActor* itemActor, float scaleFactor);
     ItemPhysicModule(): Module("itemphysic") {}
     virtual void initialize();
 };
